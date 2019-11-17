@@ -1,0 +1,563 @@
+---
+title: Yield performance of Oyster mushroom (\textit{Pleurotus ostreatus}) on various crop residues as substrate
+author:
+  - Samita Paudel:
+      institute: [iaas]
+      equal_contributor: "yes"
+  - Deependra Dhakal:
+      institute:
+        - afu
+      equal_contributor: "yes"
+      correspondence: "yes"
+      email: ddhakal.rookie@gmail.com
+institute:
+  - afu: Agriculture and Forestry University, Chitwan, Nepal
+  - iaas:
+      name: Institute of Agriculture and Animal Science, Tribhuwan University, Kathmandu, Nepal
+date: "2019-08-21"
+output: 
+  bookdown::pdf_document2:
+    template: modified_template-1.17.0.2.tex
+    toc: yes
+    toc_depth: 3
+    keep_tex: yes
+    includes:
+      in_header: header_template.tex
+    pandoc_args:
+      - '--lua-filter=scholarly-metadata.lua'
+      - '--lua-filter=author-info-blocks.lua'
+    latex_engine: xelatex
+bibliography: bibfile.bib
+linenumbers: true
+numbersections: true
+linestretch: 2
+geometry: "top=0.85in,left=1in,footskip=0.75in,marginparwidth=2in"
+abstract: |
+  Substrate type is an important factor determining growth and yield of oyster mushroom. Five different substrates namely rice straw, maize husks, banana leaves, fingermillet husk and mixture of rice straw & black gram pod shell (1:1) were evaluated for the yield and related attributes of \textit{Pleurotus ostreatus}. Standard cultivation practice was followed with steam sterilization and spawning was done on 575 g of substrate in individual poly-bag. The data of three flushes were recorded. Our results revealed that full spawn run completed earlier (18.57 days) in fingermillet husk as compared to any other tested substrates. The highest total quantity yield was obtained in fingermillet husk (\SI{1024.57}{\gram \per bag}) and rice straw (\SI{956.14}{\gram \per bag}) with corresponding biological efficiency 178.19\% and 166.29\% respectively which were significantly higher than all other treatments. The cropping duration was significantly higher in maize husks and banana leaves as compared to rest of three treatments viz. fingermillet husk, rice straw and mixture of rice straw and black gram pod shell (1:1). These three treatments were not statistically different for cropping duration with each other. Considering the biological efficiency and earliness of crop the performance of fingermillet husk, followed by rice straw was found to be better.
+keywords: Agricultural byproducts; Biological efficiency; Cropping duration; \textit{Pleurotus ostreatus}
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(lubridate)
+require(nlme)
+require(lme4)
+require(gridExtra)
+require(grid)
+require(ggpubr)
+require(ggsci)
+
+theme_set(theme_light())
+knitr::opts_chunk$set(tidy = FALSE, cache = FALSE, 
+                      echo = FALSE, 
+                      tidy.opts = list(width.cutoff=50), 
+                      eval = TRUE, warning = FALSE, message = FALSE,
+                      # fig.show = "hold", 
+                      fig.align = "center", fig.width = 5,
+                      fig.asp = 0.9, out.width = "0.6\\linewidth")
+options(knitr.kable.NA = "", digits = 3)
+```
+
+\linenumbers
+
+\clearpage
+
+# Introduction
+
+Oyster mushroom (\textit{Pleurotus species}) is an edible, saprophytic and lignocellulolytic type of fungus belonging to the class Agaricomycetes, order Agaricales and family Pleurotaceae. It is the second widely cultivated mushroom following the Agaricus bisporus in the world [@sanchez2010cultivation]. There are over 70 species of oyster mushroom been discovered [@kong2004] and still there are lots to explore. \textit{Pleurotus ostreatus} is the most popular species of oyster mushroom found in Nepal. The Latin word 'Pleurotus' means beside the ear and 'ostreatus' means oyster shaped [@cohen2002] and in Nepal it is often called "Kanya chayu" due to the ear like appearance. Pleurotus species can efficiently degrade agricultural byproducts and can grow on wide range of agricultural wastes. 
+
+A substrate is any material that serves as a medium of growth for a living thing in which enzymes can act upon and break it to release nutrients for the growing organism. There are a range of wastes that can be used for oyster mushroom cultivation, but it's use depends on availability and its cost.
+Cereals, worldwide account for more than three-forth of global world production and can furnish outstanding amounts of agricultural residues which can be successfully utilized for Oyster mushroom cultivation [@fao2019crops].
+
+The availability of good substrate is an important requirement for the better growth and higher yield of mushroom. An ideal substrate should contain adequate amount of nitrogen and carbohydrates for rapid mushroom growth [@khare2010]. Total Carbon (C), total Nitrogen (N), Carbon/Nitrogen ratio (C/N) are important factors that determines the mycelium colonized and development of fruiting bodies in oyster mushroom. @hong1981 have shown that in both Agaricus bitorquis and \textit{Pleurotus ostreatus} the yield of mycelium decreases under lower or higher C/N ratio. Pleurotus fungi mobilizes the carbohydrate composed in rice straw mainly through cellulose and hemicellulose degradation [@fazaeli2006nutritive]. Rice straw is a popular substrate for Pleurotus cultivation in Asia, mainly favored for its composition of slow degrading carbohydrates. Rice straw has the chemical composition of (in percentage dry mass basis) 0.96% N, 73.01% NDF, 41.59% ADF, 31.42% Hemicellulose, 33.35% Cellulose and 4.84% Acid detergent lignin when sampled over different stages of growth, amounting to a generalized carbon(lignocellulosic)-nitrogen ratio of 72% [@sarnklong2010utilization]. Similarly corn cob contains 47% cellulose, 25% lignin, total Carbon 47%, Nitrogen 0.48% and C/N ratio of 97:1 that can be used as substrate for Pleurotus cultivation [@kyung2004shelfcultivation]. Amongst various cereal straws, paddy straw was reported to be the best substrate for the cultivation of oyster mushroom [@khanna1982utilization]. The leaves and pseudostems of banana contain high levels of lignocellulose [@reddy2001bioconversion]. These lignocellulose materials are efficient substrates for white-rot fungi, which produce lignolytic and cellulolytic enzymes [@pointing2001]. Legume straws are rich in Nitrogen content and are suitable as Pleurotus substrates [@poppe1995]. However, selection of right substrate to achieve high yield of oyster mushroom can be a challenge as there seems to be a wide range of agricultural crop residues available in which the oyster mushroom can be grown. The objective of this study was therefore to determine the effectiveness of different agricultural wastes (i.e. rice straw, maize husks, banana leaves, finger millet husk and black gram pod shell) on the yield performance and biological efficiency of \textit{Pleurotus ostreatus} in the subtropical condition of midhills of Nepal.
+
+# Materials and Method
+
+## Experimental site and treatment details
+
+The research was conducted at Institute of Agriculture and Animal Sciences, Lamjung, from December-2016 to March-2017. The experiment was laid out in a Completely Randomized Design (CRD) with five treatments (i.e. Rice straw, maize husks, banana leaves, fingermillet husk, mixture of rice straw and black gram pod shell (1:1)) and seven replications per treatment.
+
+## Substrate preparation and growth condition
+
+The substrates were chopped to about 3-5 cm in length and soaked overnight in the tank filled with water. Substrates were steam sterilized for at least 15-20 minutes in a metallic drum while maintaining temperature at $90^\circ C$. Then, the substrates were spread over sterilized clean plastic sheet for air cooling below $25^\circ C$. Transparent poly-bags were taken for filling of substrate in clean and sterile condition. The moisture content of the substrates while filling was around 60%. Substrates were filled in each poly-bags on dry weight basis: 575 g per poly-bag. Spawning, using single generation wheat grain spawn, was done at the rate of 10% on dry weight basis. Three layers of spawning was done, one at bottom, another at the mid-section and lastly at top, starting from the bottom layer. After spawning, the bags were tightly closed on its open end with a rope. It was ensured that layers of spawn were observable from outside the bag. The bags after spawning were weighed and their respective weights recorded as initial weights. The bags were then perforated in 8-10 numbers with sterilized needle to permit air circulation.
+
+The bags were moved to a production room after spawning and were hung randomly. The room was maintained at completely dark state using black poly-ethylene sheets. Temperature of the room was around $17-20^\circ C$ and relative humidity around 90%. Artificial lighting was not provisioned for the first 15 days of spawn run. After the proper development of white mycelium, the polythene covers were removed. At the end of the spawn run, for pinning, dim light along with sufficient fresh air was facilitated in the room through ventilation. An additional implication of this conditioning is that $\mathrm{CO_2}$ concentration was lowered. The temperature and relative humidity was maintained by sprinkling water twice a day on the ball of mushroom and and mushroom shed floor. The insecticide Nuvan (Dichlorovos 76%) was sprayed in the substrate to avoid appearance of insects. Preventive insecticidal application was only done either since a week prior to pin head appearance or after harvest of the crop. The harvesting of mushroom was done when the cap began to fold. The picking was done by twisting the mushroom gently and pulling out, leaving any stub. Cropping was done up to three flushes.
+
+## Observations
+
+Observations were taken on growth attributes like days taken for full spawn run (days), Days taken for first, second harvest and final harvest (latter also referred occassionally to as cropping duration) (days) and Quantity harvested in all three flushes (g). Beyond third flush, maintainance of mushroom production unit generally seemed uneconomical. Hence, no further observations were recorded.
+
+Fruiting bodies were weighed and measured for their physical attributes (Pileus diameter and Stipe length) after each harvest. The biological efficiency of mushroom (per gram of substrate on dry wt. basis) was calculated by using the following formula:
+
+\begin{equation}
+\label{eqn:biological-eff}
+\tag{a}
+\textrm{B.E.} \% =\frac{\text{Fresh weight of total quantity harvested from each bag}}{\textrm{Dry weight of substrate on each bag}} \times 100
+\end{equation}
+
+## Statistical analysis
+
+Each harvest of fruiting bodies was screened for appropriate number of samples in recording data. Sample observations were checkd for outliers and only representative fruiting bodies taken as samples. Regression models with both fixed and random terms were specified for responses where applicable. Analysis of variance was performed to determine the significance of experimental factors. Linear model of the following form was used to analyse quantity harvested, as being determined by the growth substrate, harvest stage:
+
+$$
+\boldsymbol{Y_{i}}= \boldsymbol{X_i} \times \boldsymbol{\beta} + \boldsymbol{Z_i} \times \boldsymbol{b_i} + \boldsymbol{\epsilon_i}
+$$
+
+Where,
+
+$\boldsymbol{Y_{i}}$ is a vector of dependent variable,
+
+$\boldsymbol{X_i}$ is a column vector of independent variables,
+
+$\boldsymbol{Z_i}$ is a column vector of random effect variables,
+
+$\boldsymbol{\epsilon_i}$ is a vector of residuals.
+
+$\boldsymbol{b_i} \sim \boldsymbol{N(0, D)}$
+
+$\boldsymbol{b_1, ..., b_N};\boldsymbol{\epsilon_1, ..., \epsilon_N}$ independent.
+
+From the initial model testing, it was evident that linear mixed model with independent errors were not quite suitable structure for treatment factors. In fact, various levels of treatments have heterogeneous variance. We accounted for this uneven variance by extending the random intercept model from $\epsilon_{ij} \sim N(0, \sigma^2)$ to $\epsilon_{ij} \sim N(0, \sigma_k^2)$, where $k = 1, 2, ..., 5$. This technically means that treatment 1 is allowed to have a different variance than treatment 2, treatment 2 has the one different from treatment 3, and so on.
+
+Whenever treatment factor had significant effects, treatment means were compared for their difference using multiple range test at 5% level of significance. Group differences were confirmed based on adjusted p-values. Model summaries and parameters were tabulated for all response variables and fits described. Correlation analysis was done to check if any causal effects are possible for yield quantities due to growth or physical attributes.
+<!-- Statistical analysis was performed in R computing environment with the help of open source packages enlisted in Appendix \ref{appendixii}. -->
+
+# Results and Discussion
+
+```{r data-import}
+# data import and pre-processing
+pleurotus_df <- readxl::read_xlsx("../data/data.xlsx", "data") %>% 
+  separate(Treatment, into = c("Treatment_code", "treatment_description"), "_") %>%
+  mutate(FSR = as_date("2016/12/20") + days(FSR), 
+         Date = as_date("2016/12/20") + days(Date)) %>% # Date is the date of harvest
+  select(everything(), fsr_date = FSR, -Treatment_code) %>% 
+  janitor::clean_names("snake") %>% 
+  mutate_at(c("replication", "treatment_description", "harvest"), as.factor)
+
+# pleurotus_df %>% colnames()
+```
+
+
+```{r tidy-marginal-models}
+# initial tidy modeling
+pleurotus_model_df <- pleurotus_df %>% 
+  group_by(treatment_description) %>% 
+  nest() %>% 
+  group_by(treatment_description) %>% 
+  mutate(pd_model = map(data, ~lm(`pileus_diameter` ~ harvest + fsr_date + replication, .x)), 
+         sl_model = map(data, ~lm(`stipe_length` ~ harvest + fsr_date + replication, .x)), 
+         qh_model = map(data, ~lm(`quantity_harvested` ~ harvest + fsr_date + replication, .x)))
+
+# pleurotus_model_df$pd_model[[4]] %>% 
+#   summary()# %>% 
+#   # str()
+#   .[['coefficients']] #%>%
+#   # .[1,4]
+
+pleurotus_model_params <- pleurotus_model_df %>% 
+  summarise_at(c("pd_model", "sl_model", "qh_model"), 
+               list(rsqrd = ~map_dbl(., ~summary(.x)[['r.squared']]), 
+                    fsr_date_effect = ~map_dbl(., ~summary(.x)[['coefficients']][4, 1]),
+                    fsr_date_stderr = ~map_dbl(., ~summary(.x)[['coefficients']][4, 2]),
+                    fsr_date_pvalue = ~map_dbl(., ~summary(.x)[['coefficients']][4, 4]), 
+                    harvest2_effect = ~map_dbl(., ~summary(.x)[['coefficients']][2, 1]),
+                    harvest2_stderr = ~map_dbl(., ~summary(.x)[['coefficients']][2, 2]),
+                    harvest2_pvalue = ~map_dbl(., ~summary(.x)[['coefficients']][2, 4]),
+                    harvest3_effect = ~map_dbl(., ~summary(.x)[['coefficients']][3, 1]),
+                    harvest3_stderr = ~map_dbl(., ~summary(.x)[['coefficients']][2, 2]),
+                    harvest3_pvalue = ~map_dbl(., ~summary(.x)[['coefficients']][3, 4]), 
+                    intercept = ~map_dbl(., ~summary(.x)[['coefficients']][1, 1])))
+
+pleurotus_model_params_tidy <- pleurotus_model_params %>% 
+  gather(key, value, -treatment_description) %>% 
+  tidyr::extract(col = key, into = c("response_var", "model_parameter"), "^(.*\\_model)\\_(.*)$") %>% 
+  spread(model_parameter, value)
+
+# pleurotus_model_params %>% 
+#   pivot_longer(cols = pd_model_rsqrd:qh_model_intercept, 
+#                names_to = c("response_trait", "covariate_statistic"), 
+#                names_pattern = "([[:alpha:]]+)_model_(.*)"
+#   ) %>% 
+#   pivot_wider(names_from = "response_trait", values_from = "value")
+```
+
+The results obtained from the studies on use of different substrates for the cultivation of \textit{Pleurotus ostreatus} in the growth performance and yield is presented in the tables and discussed below.
+
+## Days taken for full spawn run
+
+The number of days taken for full spawn run ranged from 18.57 days to 23.29 days on different substrates (Table \ref{tab:qh-fsr-summary}). Significantly lowest number of days for full spawn run was recorded on fingermillet husk (18.57 days) and the mixture of rice straw and black gram pod shell (1:1) (19.0 days). Banana leaves (23.29 days) and rice straw (22.14 days) took the highest number of days for completion of full spawn run followed by maize husks (20.86 days). Our results were almost similar to the findings of @shah2004comparative who reported that the spawn running took in 16-25 days after inoculation. This variation in number of days taken for full spawn run in different substrates could be due to the variations in chemical composition and Carbon-Nitrogen ratio (C: N) of the substrates used [@bhatti2007growth].
+
+```{r fsr-model-means}
+fsr_day_m5_df <- pleurotus_df %>% 
+  mutate(fsr_day = as.numeric(fsr_date - as_date("2016-12-20")))
+
+# # this model works too but its use is not justified because grouping by "harvest" does not make sense with respect to days to spawn running. we can take either of the harvests and reach to conclusion using simple linear model
+# fsr_day_m5_1 <- lme(`fsr_day`~`treatment_description`
+#                # + `Stipe_length`
+#                , data = fsr_day_m5_df, method = "ML", 
+#                random = ~1 | harvest,
+#                weights = varIdent(form = ~1 | treatment_description))
+
+# fsr_day_m5_2 <- lme(`fsr_day`~`treatment_description`
+#                # + `Stipe_length`
+#                , data = fsr_day_m5_df, method = "ML",
+#                random = ~1 | harvest)
+# 
+# fsr_day_m5_3 <- lme(`fsr_day`~`treatment_description` + `pileus_diameter`
+#           # + `Stipe_length`
+#           , data = fsr_day_m5_df, method = "ML",
+#           random = ~1 | harvest,
+#           weights = varIdent(form = ~1 | treatment_description))
+# 
+# fsr_day_m5_4 <- lme(`fsr_day`~`treatment_description` + `pileus_diameter` + `stipe_length`
+#                , data = fsr_day_m5_df, method = "ML",
+#                random = ~1 | harvest,
+#                weights = varIdent(form = ~1 | treatment_description))
+# anova(fsr_day_m5_1, fsr_day_m5_2, fsr_day_m5_3, fsr_day_m5_4) # select model with error structure
+
+# use of simple model below is justified
+fsr_day_lm <- lm(`fsr_day`~`treatment_description`, # omit replication as it has no significant effects
+   data = filter(fsr_day_m5_df, harvest == "First"))
+
+fsr_day_lm_df <- fsr_day_lm %>%
+  broom::tidy() %>% 
+  mutate(term = str_replace(term, "\\(Intercept\\)", "Banana leaves")) %>% 
+  mutate(estimate = if_else(term == "Banana leaves", estimate, estimate+estimate[[1]])) %>% 
+  dplyr::mutate(term = stringi::stri_replace_all_fixed(term, pattern = "treatment_description", 
+                                                       replacement = c(""), vectorize_all = FALSE),
+                term = str_replace_all(term, "_", " "),
+                term = str_replace_all(term, "\\(|\\)", ""))
+
+fsr_day_lm_plot <- ggplot(fsr_day_lm_df, 
+       mapping = aes(x = `term`, y = `estimate`)) +
+  geom_errorbar(aes(ymin = estimate-std.error, ymax = estimate+std.error), 
+                color = "black", width = .2, position = position_dodge(.2)) +
+  geom_point(position = position_dodge(.2), size = 2.5, shape = 21, fill = "white") +
+  labs(x = "Substrate type", y = "Days to full spawn run") +
+  theme(text = element_text(size = 8), 
+        legend.title = element_text(size = 10), 
+        legend.text  = element_text(size = 8),
+        axis.text.x = element_text(angle = 45)) +
+  guides(shape = guide_legend(override.aes = list(size = 0.8)),
+               color = guide_legend(override.aes = list(size = 0.8)))
+  
+```
+
+## Flushing interval
+
+Observations recorded for flushing intervals (i.e days taken from spawining to first harvest, first harvest to second harvest, and second harvest to third harvest) of oyster mushroom (Table \ref{tab:table-of-means-treatments}) shows the comparison of marginal means between tested substrates.
+
+The days taken for first harvest of mushroom were significantly affected by substrates used. The average numbers of days taken for first harvest were between 38-46 days. The earliest harvest was noted on fingermillet husk (38 days) and mixture of rice straw: black gram pod (1:1) (38.71 days) followed by maize husks (40.14 days) and rice straw (40.86 days). Banana leaves took significantly the highest number of days (46.86 days) for first harvest. Contrary to our study @quimio1990technical reported that good harvest of \textit{P. ostreatus} was obtained 3-4 weeks after spawn inoculation. 
+
+Similarly, the average numbers of days taken for second harvest were between 59-60 days. Fingermillet husk (51.29 days), rice straw (53.14 days) and mixture of rice straw and black gram pod shell (53.14 days) took minimum days for second harvest. Whereas banana leaves (69.29 days) and maize husks (67.86 days) took the maximum number of days to give second harvest. The early harvest of mushroom in fingermillet husk, rice straw might be due to the availability of nutrients required for the mushroom growth particularly for its spawn run and pin head development was supplied by substrates which decomposed quicker compared to other tested substrates.
+
+The cropping duration was significantly longest on maize husks (96.86 days) and banana leaves (94.43 days). Whereas the shortest cropping duration was recorded in fingermillet husk (69.57 days), rice straw (72.43 days) and mixture of rice straw and black gram pod shell (1:1) (71 days) which were not significantly different with each other. The cropping duration in our study ranged from 69 days to 96 days which is similar to findings of @khanna1982utilization that it may take up-to 104 days to harvest yield from oyster mushroom grown on paddy straw. The variation in cropping period among different substrates could emanate from variations in the time elapsed in formation of pinheads, maturation of fruiting bodies, interval between flushes, number of flushes and yield, which in turn is affected by the nature of the substrates [@chang1981cultivation].
+
+```{r substrate-days-automated}
+
+flush_int_df <- readxl::read_xlsx("../data/data.xlsx", "data") %>% 
+  separate(Treatment, into = c("Treatment_code", "treatment_description"), "_") %>% 
+  mutate(FSR = as_date("2016/12/20") + days(FSR), 
+         Date = as_date("2016/12/20") + days(Date)) %>% 
+  select(everything(), fsr_date = FSR, -Treatment_code) %>% 
+  janitor::clean_names("snake") %>% 
+  mutate_at(c("replication", "treatment_description", "harvest"), as.factor) %>%
+  select(-fsr_date, -pileus_diameter, -stipe_length, -quantity_harvested) %>% 
+  spread(harvest, date) %>% 
+  mutate(`First days` = First - as_date("2016/12/20"),
+         `Second days` = Second - First, 
+         `Third days` = Third - Second) %>% 
+  select(-First, -Second, -Third) %>% 
+  mutate_if(is.difftime, as.integer) %>% 
+  pivot_longer(cols = `First days`:`Third days`, names_to = "harvest", values_to = "flush_days")
+
+# pleurotus_flushing_days %>% 
+#   group_by(harvest) %>%
+#   summarise(`Flushing period` = mean(flushing_period)) %>%
+#   ggplot(aes(x = harvest, y = `Flushing period`)) +
+#   geom_col()
+
+# flush_int_m1 <- lme(`flush_days`~`treatment_description`
+#                # + `Stipe_length`
+#                , data = flush_int_df, method = "ML",
+#                random = ~1 | harvest,
+#                weights = varIdent(form = ~1 | treatment_description))
+# 
+# flush_int_m2 <- lme(`flush_days`~`treatment_description`
+#                # + `Stipe_length`
+#                , data = flush_int_df, method = "ML",
+#                random = ~1 | harvest)
+# 
+# flush_int_m3 <- lm(`flush_days`~`treatment_description` + harvest
+#                # + `Stipe_length`
+#                , data = flush_int_df)
+
+flush_int_m4 <- lme(`flush_days`~`treatment_description` + harvest
+               # + `Stipe_length`
+               , data = flush_int_df, method = "ML",
+               random = ~1 | replication,
+               weights = varIdent(form = ~1 | treatment_description))
+
+# flush_int_m5 <- lme(`flush_days`~`treatment_description` + harvest
+#                # + `Stipe_length`
+#                , data = flush_int_df, method = "ML",
+#                random = ~1 | replication)
+# 
+# anova(flush_int_m1, flush_int_m2, flush_int_m3, flush_int_m4, flush_int_m5)
+
+flush_int_m4_plot <- flush_int_m4 %>% 
+  emmeans::emmeans("treatment_description") %>% 
+  as_tibble() %>% 
+  ggplot(mapping = aes(x = `treatment_description`, y = `emmean`)) +
+  geom_errorbar(aes(ymin = emmean-SE, ymax = emmean+SE), 
+                color = "black", width = .2, position = position_dodge(.2)) +
+  geom_point(position = position_dodge(.2), size = 2.5, shape = 21, fill = "white") +
+  labs(x = "Substrate type", y = "Average flushing interval") +
+  theme(text = element_text(size = 8), 
+        legend.title = element_text(size = 10), 
+        legend.text  = element_text(size = 8), 
+        axis.text.x = element_text(angle = 45)) +
+  guides(shape = guide_legend(override.aes = list(size = 0.8)),
+               color = guide_legend(override.aes = list(size = 0.8)))
+```
+
+
+```{r full-spawn-n-flushing-interval, fig.cap= "(a) Mean differences in days to full spawn run starting from the first day of spawning from use of different growth substrates (b) Effect of substrate used on flushing interval", fig.width=4, fig.height=4, out.width="90%"}
+
+ggarrange(fsr_day_lm_plot, flush_int_m4_plot, widths = c(3,3))
+```
+
+## Physical attributes (Pileus diameter and stipe length)
+
+A mushroom body with shorter stipe length and diametrically larger pileus are commercially regarded more desirable, at least for Oyster mushroom with regards to Asian consumers.
+
+```{r physical-attributes, fig.width=6, fig.height=4, out.width="95%"}
+source("./../scripts/grid_arrange_share_legend.R")
+
+# relationship between flush and pileus diameter
+pleurotus_pd_gg <- pleurotus_df %>% 
+  ggplot(aes(x = date, y = `pileus_diameter`, color = treatment_description)) +
+  geom_point() +
+  scale_x_date(breaks = function(x) seq.Date(from = min(x), to = max(x), by = "30 days"),
+               minor_breaks = function(x) seq.Date(from = min(x), to = max(x), by = "15 days")) +
+  viridis::scale_color_viridis(discrete = TRUE) +
+  facet_wrap(~harvest, ncol = 3) +
+  labs(x = "Date", 
+       y = "Pileus diameter (in cm)", 
+       color = "Treatment") +
+  theme(text = element_text(size = 8), axis.text.x = element_text(angle = 35), 
+        legend.spacing.x = unit(0.2, 'cm')) +
+  guides(shape = guide_legend(override.aes = list(size = 0.8)),
+         color = guide_legend(override.aes = list(size = 0.8)))
+
+# relationship between flush and stipe length
+pleurotus_sl_gg <- pleurotus_df %>% 
+  ggplot(aes(x = date, y = `stipe_length`, color = treatment_description)) +
+  geom_point() +
+  scale_x_date(breaks = function(x) seq.Date(from = min(x), to = max(x), by = "30 days"),
+               minor_breaks = function(x) seq.Date(from = min(x), to = max(x), by = "15 days")) +
+  viridis::scale_color_viridis(discrete = TRUE) +
+  facet_wrap(~harvest, ncol = 3) +
+  labs(x = "Date", 
+       y = "Stipe length (in cm)", 
+       color = "Treatment") +
+  theme(text = element_text(size = 8), axis.text.x = element_text(angle = 35), 
+        legend.spacing.x = unit(0.2, 'cm')) +
+  guides(shape = guide_legend(override.aes = list(size = 0.8)),
+         color = guide_legend(override.aes = list(size = 0.8)))
+
+grid_arrange_share_legend(pleurotus_pd_gg, pleurotus_sl_gg, 
+                          nrow = 2, ncol = 1, position = "bottom")
+```
+
+## Quantity harvest (three flushes)
+
+The quantity harvest varied significantly on the different substrates in all of the three flushes (Table \ref{tab:table-of-means-treatments}). In the first flush, highest quantity harvest (571.43 g) was obtained on fingermillet husk followed by rice straw (453.57 g) and mixture of rice straw and black gram pod shell (1:1) (426.86 g). The lowest yield was obtained on banana leaves (256.71 g) and maize husks (258.86 g).
+
+In the second flush, rice straw (369 g) and fingermillet husk (328.29 g) produced the highest yield followed by the mixture of rice straw and black gram pod shell (1:1) (241.43 g). In the same flush, the lowest yield was obtained on maize husks (151.43 g) and banana leaves (218.71 g).
+
+In the third flush highest yield was obtained on rice straw (133.57 g), mixture of rice straw and black gram pod shell (1:1) (127.71 g) and fingermillet husk (124.86 g) respectively. In the same flush, the lowest yield was recorded on maize husks (45.27 g) and banana leaves (53.43 g).
+
+The total quantity harvest result showed the significant difference between the tested substrates \ref{tab:substrate-quantity}. When measured on average, Fingermillet husk and rice straw gave significantly higher total quantity harvest followed by mixture of rice straw and black gram pod shell (1:1). Maize husks and banana leaves gave the lowest total quantity harvest and had no significant difference with each other. Overall, in terms of production, fingermillet husk and rice straw could be considered as best substrates. Similar results were obtained by [@khanna1982utilization] who reported paddy straw as the best substrate for the cultivation of oyster mushroom amongst various cereal straws. Higher yield of mushroom in rice straw is due easier nutrient solubilization in cellulosic substances, once they start to degrade [@ponmurugan2007effect]. Whereas the poor yield under maize husks and banana leaves might be due to inherent low availability of nutrients and low water holding capacity, possibly due to higher lignin content.
+
+```{r model-formulation}
+# # model diagnostics
+# simple model without accounting for harvest
+# lm(data = pleurotus_df, `quantity_harvested`~`replication`*`treatment_description`)
+
+# qh_m1 <- lme(`quantity_harvested`~`treatment_description`, data = pleurotus_df, method = "ML",
+#     random = ~ 1 | replication,
+#     weights = varIdent(form = ~1 | harvest))
+# 
+# qh_m2 <- lme(`quantity_harvested`~`treatment_description`, data = pleurotus_df, method = "ML",
+#     random = ~ 1 | replication)
+# 
+# qh_m3 <- lme(`quantity_harvested`~`treatment_description` + `replication`, data = pleurotus_df, method = "ML", 
+#     random = ~1 | harvest) # addition of fixed effects interaction does not make things better
+# 
+# qh_m4 <- lme(`quantity_harvested`~`treatment_description` + `replication`, 
+#           data = pleurotus_df, method = "ML", 
+#     random = ~1 | harvest, 
+#     weights = varIdent(form = ~1 | treatment_description))
+
+qh_m5 <- lme(`quantity_harvested`~`treatment_description` + 
+            # `replication` + # this adds to model complexity but not much information
+            `pileus_diameter`
+            # + `Stipe_length`
+          , data = pleurotus_df, method = "ML", 
+    random = ~1 | harvest, 
+    weights = varIdent(form = ~1 | treatment_description))
+
+# anova(qh_m1, qh_m2)
+# anova(qh_m1, qh_m3)
+# anova(qh_m2, qh_m3)
+# anova(qh_m3, qh_m4)
+# anova(qh_m4, qh_m5)
+
+# # residuals vs fitted values of random intercept model
+# plot(qh_m3, col = 1)
+# plot(qh_m4, col = 1)
+# plot(qh_m5, col = 1)
+
+# m3: there is a feeble but apparent evidence of heterogeniety as the residual spread is slightly larger for larger fitted values.
+
+# m4: addition of weights for homogenizing the variance of residuals shows better results than m3. we used variance structure grouping due to treatment_description factor to limit the heterogeniety of variance among fitted values. now the standardized residuals look more stochastic. this is a better model, evidently.
+
+# m5: adding pileus diameter to the model improves the model, albeit marginally. is the best model data gives
+```
+
+
+```{r qh-fsr-summary}
+# source("./../scripts/model_summary_kabletype.R")
+# # note the function does not tidy well for more than 3 models (yet to be implemented)
+# 
+# model_summary_fixed_df <- p_annotator(list(fsr_day_lm, flush_int_m4, qh_m5))
+
+model_summary_df <- map_dfr(list(fsr_day_lm, flush_int_m4, qh_m5), 
+    function(x){
+      if (class(x) == "lm") {
+        x <- summary(fsr_day_lm) %>% 
+          coefficients() %>% 
+          as_tibble(rownames = "term") %>% 
+          rename("Value" = "Estimate", 
+                 "Std.Error" = "Std. Error", 
+                 "t-value" = "t value", 
+                 "p-value" = "Pr(>|t|)")
+      } else {
+        x <- coefficients(summary(x)) %>% 
+          as_tibble(rownames = "term")
+      }
+      x <- x %>% 
+        dplyr::mutate(significance_stars = case_when(
+          `p-value` < .001 ~ "***", 
+          `p-value` < .01 ~ "**", 
+          `p-value` < .05 ~ "*",
+          TRUE ~ " ")) %>% 
+        dplyr::mutate_if(is.numeric, ~round(., 2)) %>%
+        dplyr::mutate(Value = paste(Value,"(", Std.Error, ")", significance_stars, sep = "")) %>%
+        dplyr::select(term, Value) 
+      return(x)
+    }, .id = "model") %>%
+  tidyr::spread(key = model, value = Value) %>%
+  dplyr::mutate(term = stringi::stri_replace_all_fixed(term, pattern = "treatment_description",
+                                                       replacement = c(""),
+                                                       vectorize_all = FALSE),
+                term = str_replace_all(term, "_", " "),
+                term = str_replace_all(term, "\\(|\\)", "")) %>% 
+  mutate_at(1, str_to_sentence)
+
+model_ic_nobs <- map_df(list(fsr_day_lm, flush_int_m4, qh_m5), 
+                        function(ma){
+                          list(AIC(ma), 
+                               BIC(ma),
+                               nobs(ma)) %>% 
+                            set_names(c("Akaike IC", "Bayesian IC", "Observations"))
+                        }) %>% 
+  round(3) %>% 
+  t() %>%
+  as_tibble(rownames = "term", .name_repair = "universal", check = FALSE) %>% 
+  mutate_if(is.numeric, as.character)
+
+model_summary_df <- full_join(model_summary_df, model_ic_nobs, by = c("1" = "...1", "2" = "...2", "3" = "...3", "term" = "term"))
+  
+model_summary_df %>% 
+  knitr::kable(col.names = c(" ", "Days to full spawn run (days)", "Flushing interval (days)", "Quantity harvested (g)"), 
+               booktabs = TRUE, longtable = TRUE, align = "l", 
+               caption = "Summary of treatment effects and model parameters"#, 
+               # linesep = ""
+               ) %>% 
+  kableExtra::kable_styling(bootstrap_options = "striped", font_size = 8, position = "center", latex_options = "HOLD_position") %>% 
+  kableExtra::row_spec(which(model_summary_df$term == "Akaike IC")-1, hline_after = T)
+```
+
+
+Quantity harvested in our study could otherwise be stated in terms of Biological efficiency of the substrates too. As defined in Equation (\ref{eqn:biological-eff}), quantity harvest from each observation can be expressed as Biological efficiency as, we took 0.575 kg of dry substrates for each bag. Results of the biological efficiency varied significantly among the substrates used \ref{tab:table-of-means-treatments} (79.23% to 178.19%). @nunez2002submerged reported, while working on \textit{P. ostreatus} suggest a different range (50.8% to 106.2%) of biological efficiency of the studied substrates. This is expected because of wholly different properties of substrate they picked for study (Cereal straw, grapevine stems, dried olive mill waste, flax and cotton wastes, etc.) In general, these values can vary substantially, depending on the type of substrate and cultivation strategy. Fingermillet husk and rice straw probably contain adequate C/N ratio for sustained higher production of \textit{Pleurotus ostreatus} compared to rest of the substrates. The yield of \textit{Pleurotus ostreatus} mycelium decreases under lower or higher C/N ratio [@warcup1951studies].
+
+```{r table-of-means-treatments}
+# # plot emmeans
+# plot(emmeans::emmeans(qh_m5, "treatment_description"), comparison = T)
+
+# pairwise comparison
+# pairs(emmeans::emmeans(qh_m5, "treatment_description"))
+
+# # p-value comparison
+# emmeans::pwpp(emmeans::emmeans(qh_m5, "treatment_description"))
+
+# # contrasts
+# qh_means_contrast <- emmeans::contrast(emmeans::emmeans(qh_m5, "treatment_description"))
+# qh_means_contrast
+# coef(qh_means_contrast) # contrast coefficients can be assessed to
+
+fsr_m5_means <- multcomp::cld(emmeans::emmeans(fsr_day_lm, "treatment_description")) 
+flush_int_m4_means <- multcomp::cld(emmeans::emmeans(flush_int_m4, "treatment_description"))
+qh_m5_means <- multcomp::cld(emmeans::emmeans(qh_m5, "treatment_description")) # compact display
+
+numeric_trait_names <- c("full_spawn_run", "flushing_interval", "quantity_harvested")
+rename_format <- function(x){
+  str_replace_all(x, "_", " ") %>% 
+    str_replace_all("\\(|\\)", "") %>% 
+    str_to_title()
+}
+
+pleurotus_means_df <- list(fsr_m5_means, flush_int_m4_means, qh_m5_means) %>% 
+  map(~.x %>% select(c("treatment_description", "emmean", ".group")) %>% as_tibble()) %>% 
+  reduce(.f = full_join, by = c("treatment_description"), .dir = "forward") %>% 
+  mutate_at(vars(contains("group")), list(~as.character(as.numeric(.))))
+
+pleurotus_means_df %>% 
+  select(1) %>% 
+  bind_cols(data.frame(setNames(lapply(list(c(2,3), c(4, 5), c(6, 7)), function(i) 
+    do.call(sprintf, c(fmt = "%0.3f (%s)",
+                       pleurotus_means_df[i]))), numeric_trait_names))) %>% 
+  rename_all(rename_format) %>% 
+  knitr::kable(booktabs = TRUE, align = "l", caption = "Mean comparison of treatment substrate for effects in economic traits") %>% 
+  kableExtra::kable_styling(position = "center", font_size = 8, latex_options = "HOLD_position") %>% 
+  kableExtra::column_spec(2:4, width = rep("6em", 6)) %>% 
+  kableExtra::add_footnote(label = c("Same numerals inside the brackets signify absence of difference in treatment means"))
+
+```
+
+
+# Conclusion
+
+From the present study it is confirmed that oyster mushroom (\textit{Pleurotus ostreatus}) can be cultivated on rice straw, maize husks, banana leaves, fingermillet husk and mixture of rice straw & black gram pod (1:1) with varying growth performances. Fingermillet husk and rice straw were identified as the most suitable substrates for oyster mushroom cultivation. Fingermillet husk and rice straw followed by mixture of rice straw and black gram pod shell (1:1) produced a significantly higher yield and biological efficiency in shorter cropping duration. Fingermillet husk and mixture of rice straw and black gram pod shell (1:1) also proved to be better in terms of days taken for full spawn run. Therefore, fingermillet husk and rice straw can be recommended as the preferred substrate for oyster mushroom cultivation. In addition, mixture of rice straw and black gram pod (1:1) can be used as alternative substrate given that the growth performance, yield and cropping duration of oyster mushroom was better in it next to fingermillet husk and rice straw. The utilization of fingermillet husk and rice straw as substrates for oyster mushroom cultivation can be a solution to the huge agricultural by products available. And yet, further studies need to be conducted on the potentials of various agricultural wastes on oyster mushroom cultivation.
+
+<!-- # Appendix {#appendixii .unnumbered} -->
+
+<!-- ```{r bib} -->
+<!-- # write a table of sessioninfo for appendix -->
+<!-- sessioninfo::package_info(dependencies = FALSE) %>%  -->
+<!--   select("package", "loadedversion", "date", "source") %>%  -->
+<!--   as_tibble() %>%  -->
+<!--   knitr::kable(caption = "Session of R computing environment with loaded packages", booktabs = TRUE, longtable =TRUE) %>%  -->
+<!--   kableExtra::kable_styling(latex_options = c("HOLD_position", "striped"), font_size = 8) -->
+<!-- ``` -->
+
+# References {#references .unnumbered}
+
+```{r}
+# create a bib file for the R packages used in this document
+# knitr::write_bib(loadedNamespaces(), file = './bibfile_packages.bib')
+
+# rrtools::add_dependencies_to_description()
+```

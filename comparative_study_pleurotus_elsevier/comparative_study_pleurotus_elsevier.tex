@@ -1,0 +1,589 @@
+\documentclass[]{elsarticle} %review=doublespace preprint=single 5p=2 column
+%%% Begin My package additions %%%%%%%%%%%%%%%%%%%
+\usepackage[hyphens]{url}
+
+  \journal{Saudi Journal of Biological Sciences} % Sets Journal name
+
+
+\usepackage{lineno} % add
+  \linenumbers % turns line numbering on
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\usepackage{graphicx}
+\usepackage{booktabs} % book-quality tables
+%%%%%%%%%%%%%%%% end my additions to header
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \usepackage{fontspec}
+  \ifxetex
+    \usepackage{xltxtra,xunicode}
+  \fi
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use microtype if available
+\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+\bibliographystyle{elsarticle-harv}
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex]{hyperref}
+\else
+  \usepackage[unicode=true]{hyperref}
+\fi
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={},
+            pdftitle={Comparative study on Performance of Different Substrates on Oyster Mushroom ()},
+            colorlinks=false,
+            urlcolor=blue,
+            linkcolor=magenta,
+            pdfborder={0 0 0}}
+\urlstyle{same}  % don't use monospace font for urls
+
+\setcounter{secnumdepth}{5}
+% Pandoc toggle for numbering sections (defaults to be off)
+% Pandoc header
+\usepackage{siunitx}
+\usepackage{moreverb}
+% \usepackage{fontenc}
+\usepackage{fontawesome}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{tikz} % required for image opacity change
+\usepackage[absolute,overlay]{textpos} % for text formatting
+\usepackage{chemfig}
+
+\newcommand\BibTeX{{\rmfamily B\kern-.05em \textsc{i\kern-.025em b}\kern-.08em
+T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\sisetup{per-mode=symbol}
+
+% this is to sort and place the reference in nice order
+\DeclareRobustCommand{\firstsecond}[2]{#2}
+
+% \bibliographystyle{plainnat}
+\usepackage[numbers]{natbib}
+
+
+
+\begin{document}
+\begin{frontmatter}
+
+  \title{Comparative study on Performance of Different Substrates on Oyster
+Mushroom (\textit{Pleurotus ostreatus})}
+    \author[Department of Horticulture and Plant Protection]{Samita Paudel}
+  
+  
+    \author[Department of Plant Breeding]{Deependra Dhakal\corref{c1}}
+   \ead{ddhakal.rookie@gmail.com} 
+   \cortext[c1]{Corresponding Author}
+    
+  \begin{abstract}
+  Substrate type is an important factor determining growth and yield of
+  oyster mushroom. Five different substrates namely rice straw, maize
+  hulls, banana leaves, fingermillet husk and mixture of rice straw \&
+  black gram pod shell (1:1) were evaluated for the yield and related
+  attributes of \textit{Pleurotus ostreatus}. Standard cultivation
+  practice was followed with steam sterilization and spawning was done on
+  575 g of substrate in individual poly-bag. The data of three flushes
+  were recorded. Our results revealed that full spawn run completed
+  earlier (18.57 days) in fingermillet husk as compared to any other
+  tested substrates. The highest total quantity yield was obtained in
+  fingermillet husk (\SI{1024.57}{\gram \per bag}) and rice straw
+  (\SI{956.14}{\gram \per bag}) with corresponding biological efficiency
+  178.19\% and 166.29\% respectively which were significantly higher than
+  all other treatments. The cropping duration was significantly higher in
+  maize hulls and banana leaves as compared to rest of three treatments
+  viz. fingermillet husk, rice straw and mixture of rice straw and black
+  gram pod shell (1:1). These three treatments were not statistically
+  different for cropping duration with each other. Considering the
+  biological efficiency and earliness of crop the performance of
+  fingermillet husk, followed by rice straw was found to be better.
+  \end{abstract}
+  
+ \end{frontmatter}
+
+\hypertarget{keywords}{%
+\section*{Keywords}\label{keywords}}
+\addcontentsline{toc}{section}{Keywords}
+
+Agricultural byproducts; Biological efficiency; Cropping duration;
+\textit{Pleurotus ostreatus}
+
+\clearpage
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+Oyster mushroom (\textit{Pleurotus species}) is an edible, saprophytic
+and lignocellulolytic type of fungus belonging to the class
+Agaricomycetes, order Agaricales and family Pleurotaceae. It is the
+second widely cultivated mushroom following the Agaricus bisporus in the
+world (Sańchez, 2010). There are over 70 species of oyster mushroom been
+discovered (Kong, 2004) and still there are lots to explore.
+\textit{Pleurotus ostreatus} is the most popular species of oyster
+mushroom found in Nepal. The Latin word `Pleurotus' means beside the ear
+and `ostreatus' means oyster shaped (Cohen et al., 2002) and in Nepal it
+is often called ``Kanya chayu'' due to the ear like appearance.
+Pleurotus species can efficiently degrade agricultural byproducts and
+can grow on wide range of agricultural wastes. A substrate is any
+material that serves as a medium of growth for a living thing in which
+enzymes can act upon and break it to release nutrients for the growing
+organism. There are a range of wastes that can be used for oyster
+mushroom cultivation, but it depends on the basis of availability of the
+substrate and its cost.
+
+The availability of good substrate is an important requirement for the
+better growth and higher yield of mushroom. An ideal substrate should
+contain adequate amount of nitrogen and carbohydrates for rapid mushroom
+growth (Khare et al., 2010). Total Carbon (C), total Nitrogen (N),
+Carbon/Nitrogen ratio (C/N) are important factors that determines the
+mycelium colonized and development of fruiting bodies in oyster
+mushroom. Hong et al. (1981) have shown that in both Agaricus bitorquis
+and \textit{Pleurotus ostreatus} the yield of mycelium decreases under
+lower or higher C/N ratio. Pleurotus fungi mobilizes the carbohydrate
+composed in rice straw mainly through cellulose and hemicellulose
+degradation (Fazaeli et al., 2006). Rice straw is a popular substrate
+for Pleurotus cultivation in Asia, mainly favored for its composition of
+slow degrading carbohydrates. Rice straw has the chemical composition of
+(in percentage dry mass basis) 0.96\% N, 73.01\% NDF, 41.59\% ADF,
+31.42\% Hemicellulose, 33.35\% Cellulose and 4.84\% Acid detergent
+lignin when sampled over different stages of growth, amounting to a
+generalized carbon(lignocellulosic)-nitrogen ratio of 72\% (Sarnklong et
+al., 2010). Similarly corn cob contains 47\% cellulose, 25\% lignin,
+total Carbon 47\%, Nitrogen 0.48\% and C/N ratio of 97:1 that can be
+used as substrate for Pleurotus cultivation (Wha Choi, 2004). Amongst
+various cereal straws, paddy straw was reported to be the best substrate
+for the cultivation of oyster mushroom (Khanna and Garcha, 1982). The
+leaves and pseudostems of banana contain high levels of lignocellulose
+(Reddy, 2001). These lignocellulose materials are efficient substrates
+for white-rot fungi, which produce lignolytic and cellulolytic enzymes
+(Pointing, 2001). Legume straws are rich in Nitrogen content and are
+suitable as Pleurotus substrates (Poppe, 1995). However, selection of
+right substrate to achieve high yield of oyster mushroom can be a
+challenge as there seems to be a wide range of agricultural crop
+residues available in which the oyster mushroom can be grown. The
+objective of this study was therefore to determine the effectiveness of
+different agricultural wastes (i.e.~rice straw, maize hulls, banana
+leaves, finger millet husk and black gram pod shell) on the yield
+performance and biological efficiency of \textit{Pleurotus ostreatus} in
+the subtropical condition of midhills of Nepal.
+
+\hypertarget{materials-and-method}{%
+\section{Materials and Method}\label{materials-and-method}}
+
+The research was conducted under a condition in Institute of Agriculture
+and Animal Sciences, Lamjung, from December-2016 to March-2017. The
+experiment was designed in a Completely Randomized Design (CRD) with
+five treatments (i.e.~Rice straw, maize hulls, banana leaves,
+fingermillet husk, mixture of rice straw and black gram pod shell (1:1))
+and seven replications per treatment.
+
+The substrates were chopped to about 3-5 cm in length and soaked
+overnight in the tank filled with water. Steam sterilization method was
+followed for at least 15-20 minutes in a Metallic drum to reach
+temperature up to 90 \(^\circ C\). Then, the substrates were spread over
+sterilized clean plastic sheet for air cooling below 25 \(^\circ C\).
+Transparent poly-bags were taken for filling of substrate in clean and
+sterile condition. The moisture content of the substrates while filling
+was around 60\%. The substrates were filled on dry weight basis i.e.575
+g per poly-bag. The spawning was done at the rate of 10\% on dry weight
+basis. Three layer of spawning was done, one at bottom, another at the
+mid-section and lastly at top, starting from the bottom layer. After
+spawning the bag was tightly knocked with rope. The spawn in the
+substrate should be clearly seen from outside. The bags after spawning
+were weight and their respective weights maintained. The bags were then
+perforated in 8-10 numbers with sterilized needle to permit air
+circulation.
+
+The bags were moved to a production room after spawning and were hanged
+randomly. The room was made completely dark using black poly ethylene
+sheets. The temperature was around 17-20 \(^\circ C\) and relative
+humidity around 90\%. For the first 15 days of spawn run the artificial
+lighting was not provided. After the proper development of white
+mycelium, the polythene covers were removed. At the end of the spawn
+run, for pinning dim light along with sufficient fresh air was
+introduced in to the room through ventilation and \(\mathrm{CO_2}\)
+concentration was lowered. The temperature and relative humidity was
+maintained by spraying water twice a day on the ball of mushroom and on
+the floor of the room. The insecticide Nuvan was sprayed in substrate to
+avoid the appearance of several insects. The application of Nuvan was
+done only before pin head appearance or after harvesting of crop. The
+harvesting of mushroom was done when the cap began to fold. The picking
+was done by twisting the mushroom gently and pulling out, leaving any
+stub. Cropping was done up to three flushes.
+
+The Parameters taken were days taken for full spawn run (days), Quantity
+harvest in three flushes (g), Days taken for first and second harvest,
+cropping duration (days) and total quantity harvest (g). The fruiting
+bodies after harvested are weighted and measurement of mushroom was
+taken. The biological efficiency of mushroom per gram of substrate on
+dry wt. basis was calculated by using the following formula:
+
+\[
+\textrm{B.E.} \% =\frac{\text{TQH from each bag}}{\textrm{DW of substrate on each bag}} \times 100
+\]
+
+Where,
+
+TQH/bag: Total quantity harvest from each bag
+
+DW: dry weight of substrate on each bag
+
+The difference of mean was compared, using Tukey's test at the level of
+5\% significance.
+
+\hypertarget{results-and-discussion}{%
+\section{Results and Discussion}\label{results-and-discussion}}
+
+The results obtained from the studies on use of different substrates for
+the cultivation of \textit{Pleurotus ostreatus} in the growth
+performance and yield is presented in the tables and discussed below.
+
+\hypertarget{days-taken-for-full-spawn-run}{%
+\subsection{Days taken for full spawn
+run}\label{days-taken-for-full-spawn-run}}
+
+The number of days taken for full spawn run ranged from 18.57 days to
+23.29 days on different substrates (Table \ref{tab:substrate-days}).
+Significantly lowest number of days for full spawn run was recorded on
+fingermillet husk (18.57 days) and the mixture of rice straw and black
+gram pod shell (1:1) (19.0 days). Banana leaves (23.29 days) and rice
+straw (22.14 days) took the highest number of days for completion of
+full spawn run followed by maize hulls (20.86 days). Our results were
+almost similar to the findings of Shah et al. (2004) who reported that
+the spawn running took in 16-25 days after inoculation. This variation
+in number of days taken for full spawn run in different substrates could
+be due to the variations in chemical composition and Carbon to Nitrogen
+ratio (C: N) of the substrates used (Bhatti et al., 2007).
+
+\hypertarget{days-taken-for-first-and-second-harvest}{%
+\subsection{Days taken for first and second
+harvest}\label{days-taken-for-first-and-second-harvest}}
+
+The days taken for first harvest of mushroom (Table
+\ref{tab:substrate-days}) were significantly affected by substrates
+used. The average numbers of days taken for first harvest were between
+38-46 days. The earliest harvest was noted on fingermillet husk (38d
+ays) and mixture of rice straw: black gram pod (1:1) (38.71 days)
+followed by maize hulls (40.14 days) and rice straw (40.86 days). Banana
+leaves took significantly the highest number of days (46.86 days) for
+first harvest. Contrary to our study Quimio et al. (1990) reported that
+good harvest of \textit{P. ostreatus} was obtained 3-4 weeks after spawn
+inoculation.
+
+Similarly, the average numbers of days taken for second harvest were
+between 59-60 days. Fingermillet husk (51.29 days), rice straw (53.14
+days) and mixture of rice straw and black gram pod shell (53.14 days)
+took minimum days for second harvest. Whereas banana leaves (69.29 days)
+and maize hulls (67.86 days) took the maximum number of days to give
+second harvest. The early harvest of mushroom in fingermillet husk, rice
+straw might be due to the availability of nutrients required for the
+mushroom growth particularly for its spawn run and pin head development
+was supplied by substrates which decomposed quicker compared to other
+tested substrates.
+
+\hypertarget{cropping-duration}{%
+\subsection{Cropping duration}\label{cropping-duration}}
+
+The data recorded for cropping duration of oyster mushroom
+\ref{tab:substrate-days} indicates highly significant difference between
+tested substrates. The cropping duration was significantly longest on
+maize hulls (96.86 days) and banana leaves (94.43 days). Whereas the
+shortest cropping duration was recorded in fingermillet husk (69.57
+days), rice straw (72.43 days) and mixture of rice straw and black gram
+pod shell (1:1) (71 days) which were not significantly different with
+each other. The cropping duration in our study ranged from 69 days to 96
+days which is similar to findings of Khanna and Garcha (1982) that it
+may take up-to 104 days to harvest yield from oyster mushroom grown on
+paddy straw. The variation in cropping period among different substrates
+could emanate from variations in the time elapsed in formation of
+pinheads, maturation of fruiting bodies, interval between flushes,
+number of flushes and yield, which in turn is affected by the nature of
+the substrates (Chang et al., 1981).
+
+\begin{table}[t]
+
+\caption{\label{tab:substrate-days}Effect of different substrates on days taken for full spawn run, days taken for first and second harvest and cropping duration of \textit{Pleurotus ostreatus}.}
+\centering
+\fontsize{8}{10}\selectfont
+\begin{tabular}{>{\raggedright\arraybackslash}p{7em}>{\raggedright\arraybackslash}p{7em}>{\raggedright\arraybackslash}p{7em}>{\raggedright\arraybackslash}p{7em}>{\raggedright\arraybackslash}p{7em}}
+\toprule
+Substrates & Days taken for full spawn run & Days taken for first harvest & Days taken for second harvest & Cropping duration\\
+\midrule
+Rice straw & 22.14cd & 40.86c & 53.14a & 72.43a\\
+Maize hulls & 20.86bc & 40.14bc & 67.86b & 96.86b\\
+Banana leaves & 23.29d & 46.86d & 69.29b & 94.43b\\
+Rice straw: black gram pod shell (1:1) & 19.00ab & 38.71ab & 53.14a & 71.00a\\
+Fingermillet husk & 18.57a & 38.00a & 51.29a & 69.57a\\
+\addlinespace
+Significance at 5\% & ** & ** & * & *\\
+\bottomrule
+\multicolumn{5}{l}{\textsuperscript{a} The symbols * denotes significant and ** denotes highly significant}\\
+\end{tabular}
+\end{table}
+
+\hypertarget{quantity-harvest-three-flushes-and-total-quantity-harvest}{%
+\subsection{Quantity harvest (three flushes) and Total quantity
+harvest}\label{quantity-harvest-three-flushes-and-total-quantity-harvest}}
+
+The quantity harvest varied significantly on the different substrates in
+all of the three flushes (Table 2). In the first flush, significantly
+highest quantity harvest (571.43 g) was obtained on fingermillet husk
+followed by rice straw (453.57 g) and mixture of rice straw and black
+gram pod shell (1:1) (426.86 g). The lowest yield was obtained on banana
+leaves (256.71 g) and maize hulls (258.86 g).
+
+In the second flush, rice straw (369 g) and fingermillet husk (328.29 g)
+produced the highest yield followed by the mixture of rice straw and
+black gram pod shell (1:1) (241.43 g). In the same flush, the lowest
+yield was obtained on maize hulls (151.43 g) and banana leaves (218.71
+g).
+
+In the third flush highest yield was obtained on rice straw (133.57 g),
+mixture of rice straw and black gram pod shell (1:1) (127.71 g) and
+fingermillet husk (124.86 g) respectively. In the same flush, the lowest
+yield was recorded on maize hulls (45.27 g) and banana leaves (53.43 g).
+
+The total quantity harvest result showed the significant difference
+between the tested substrates \ref{tab:substrate-quantity}. Fingermillet
+husk (1024.57 g) and rice straw (956.14 g) gave significantly higher
+total quantity harvest followed by mixture of rice straw and black gram
+pod shell (1:1) (796 g). Maize hulls and banana leaves gave the lowest
+total quantity harvest with corresponding yield of 455.56 g and 528.86 g
+respectively and had no significant difference with each other.
+Fingermillet husk, rice straw followed by the mixture of rice straw and
+black gram pod shell gave higher quantity harvest in all of the three
+flushes and resulted in higher total quantity harvest and were
+considered as best substrates. Similar results were obtained by (Khanna
+and Garcha, 1982) who reported paddy straw as the best substrate for the
+cultivation of oyster mushroom amongst various cereal straws. The higher
+yield of mushroom in rice straw is due to easier way of getting
+nutrients from the cellulosic substances (Ponmurugan et al., 2007). The
+higher yield of oyster mushroom in fingermillet husk and mixture of rice
+straw and black gram pod shell (1:1) could be due to the better
+availability of nutrients from them. Whereas the poor yield under maize
+hulls and banana leaves might be due to their lower availability of
+nutrients and low water holding capacity which is due to higher lignin
+content on them.
+
+\hypertarget{biological-efficiency}{%
+\subsection{Biological efficiency}\label{biological-efficiency}}
+
+Biological efficiency is used to evaluate the efficiency of conversion
+of substrate in to mushrooms. It was determined as ratio of the Total
+Quantity Harvest to the dry weight of each substrate. In our experiment
+we took 0.575 kg of dry substrates for each bag. Results of the
+biological efficiency varied significantly among the substrates used
+\ref{tab:substrate-quantity}. The significantly highest percentage of
+biological efficiency was observed on fingermillet husk and rice straw
+with corresponding biological efficiency of 178.19\% and 166.29\%
+respectively followed by the mixture of rice straw and black gram pod
+(1:1) (138.43\%). Whereas the least biological efficiency of 79.23\% and
+91.98\% was observed in maize hulls and banana leaves respectively and
+they were not significantly different with each other. Núñez and Mendoza
+(2002) reported that the biological efficiency of the studied substrates
+varied from 50.8\% to 106.2\% while working with \textit{P. ostreatus}
+however our results are not consistent with theirs. In our study we got
+biological efficiency greater than 100\% which is supported by Contreras
+et al. (2004) and Mandeel et al. (2005) who reported that in the case of
+\textit{P. ostreatus}, it is possible to reach a biological efficiency
+greater than 100\%. Similarly, Jiskani (1999) also reported that one kg
+of dry substrate can produce one kg of fresh mushroom which is the 100\%
+dry weight of substrate used. However, these values can vary
+substantially, depending on the type of substrate and cultivation
+strategy. The variation in biological efficiency of oyster mushroom is
+mostly due to the Physiochemical properties of substrate used.
+Fingermillet husk and rice straw contain adequate C/N ratio for the
+better production of \textit{Pleurotus ostreatus} compared to the rest
+substrates. Since, the yield of \textit{Pleurotus ostreatus} mycelium
+decreases under lower or higher C/N ratio (Warcup, 1951).
+
+\begin{table}[t]
+
+\caption{\label{tab:substrate-quantity}Effect of different substrates on quantity harvests of \textit{Pleurotus ostreatus} during the three flushes}
+\centering
+\fontsize{8}{10}\selectfont
+\begin{tabular}{>{\raggedright\arraybackslash}p{8em}>{\raggedright\arraybackslash}p{6em}>{\raggedright\arraybackslash}p{6em}>{\raggedright\arraybackslash}p{6em}>{\raggedright\arraybackslash}p{6em}>{\raggedright\arraybackslash}p{6em}}
+\toprule
+Substrates & First Quantity harvest 
+QH1 & Second Quantity harvest
+QH2 & Third Quantity harvest
+QH3 & Total Quantity Harvest (gm/bag) & Biological efficiency (\%)\\
+\midrule
+Rice straw & 453.57b & 369.00a & 133.57a & 956.14a & 166\\
+Maize hulls & 258.86c & 151.43c & 45.27b & 455.56c & 79\\
+Banana Leaves & 256.71c & 218.71c & 53.43b & 528.86c & 92\\
+Mixture of rice straw and black gram pod shell (1:1) & 426.86b & 241.43bc & 127.71a & 796.00b & 138\\
+Fingermillet husk & 571.43a & 328.29ab & 124.86a & 1024.57a & 178\\
+\addlinespace
+Significance at 5\% & ** & ** & * & ** & \\
+\bottomrule
+\multicolumn{6}{l}{\textsuperscript{a} The symbols * denotes significant and ** denotes highly significant}\\
+\end{tabular}
+\end{table}
+
+\hypertarget{conclusion}{%
+\section{Conclusion}\label{conclusion}}
+
+From the present study it is confirmed that oyster mushroom
+(\textit{Pleurotus ostreatus}) can be cultivated on rice straw, maize
+hulls, banana leaves, fingermillet husk and mixture of rice straw \&
+black gram pod (1:1) with varying growth performances. Fingermillet husk
+and rice straw were identified as the most suitable substrates for
+oyster mushroom cultivation. Fingermillet husk and rice straw followed
+by mixture of rice straw and black gram pod shell (1:1) produced a
+significantly higher yield and biological efficiency in shorter cropping
+duration. Fingermillet husk and mixture of rice straw and black gram pod
+shell (1:1) also proved to be better in terms of days taken for full
+spawn run. Therefore, fingermillet husk and rice straw can be
+recommended as the preferred substrate for oyster mushroom cultivation.
+In addition, mixture of rice straw \& black gram pod (1:1) can be used
+as alternative substrate given that the growth performance, yield and
+cropping duration of oyster mushroom was better in it next to
+fingermillet husk and rice straw. The utilization of fingermillet husk
+and rice straw as substrates for oyster mushroom cultivation can be a
+solution to the huge agricultural by products available. And yet,
+further studies need to be conducted on the potentials of various
+agricultural wastes on oyster mushroom cultivation.
+
+\hypertarget{references}{%
+\section*{References}\label{references}}
+\addcontentsline{toc}{section}{References}
+
+\hypertarget{refs}{}
+\leavevmode\hypertarget{ref-bhatti2007growth}{}%
+Bhatti, M., Jiskani, M., Wagan, K., Pathan, M., Magsi, M., 2007. Growth,
+development and yield of oyster mushroom, pleurotus ostreatus (jacq. Ex.
+Fr.) kummer as affected by different spawn rates. Pak. J. Bot 39,
+2685--2692.
+
+\leavevmode\hypertarget{ref-chang1981cultivation}{}%
+Chang, S., Lau, O., Cho, K., 1981. The cultivation and nutritional value
+of pleurotus sajor-caju. European journal of applied microbiology and
+biotechnology 12, 58--62.
+
+\leavevmode\hypertarget{ref-cohen2002}{}%
+Cohen, R., Persky, L., Hadar, Y., 2002. Biotechnological applications
+and potential of wood-degrading mushrooms of the genus pleurotus.
+Applied microbiology and biotechnology 58, 582--594.
+
+\leavevmode\hypertarget{ref-contreras2004soaking}{}%
+Contreras, E., Sokolov, M., Mejı'a, G., Sánchez, J., 2004. Soaking of
+substrate in alkaline water as a pretreatment for the cultivation of
+pleurotus ostreatus. The Journal of Horticultural Science and
+Biotechnology 79, 234--240.
+
+\leavevmode\hypertarget{ref-fazaeli2006nutritive}{}%
+Fazaeli, H., Azizi, A., Amile, M., 2006. Nutritive value index of
+treated wheat straw with pleurotus fungi fed to sheep. Pak. J. Biol. Sci
+9, 2444--2449.
+
+\leavevmode\hypertarget{ref-hong1981}{}%
+Hong, J.-S., Lee, K.-S., Choi, D.-S., 1981. Studies on basidiomycetes
+(i)-on the mycelial growth of agaricus bitorquis and pleurotus
+ostreatus. The Korean Journal of Mycology 9, 19--24.
+
+\leavevmode\hypertarget{ref-jiskani1999brief}{}%
+Jiskani, M., 1999. A brief outline t'he fungi('cultivation of
+mushrooms). Izhar Pub. Tandojam, Pakistan 94.
+
+\leavevmode\hypertarget{ref-khanna1982utilization}{}%
+Khanna, P., Garcha, H., 1982. Utilization of paddy straw for cultivation
+of pleurotus species. Mushroom Newsl. Trop 2, 5--9.
+
+\leavevmode\hypertarget{ref-khare2010}{}%
+Khare, K., Mutuku, J., Achwania, O., Otaye, D., 2010. Production of two
+oyster mushrooms, pleurotus sajor-caju and p. Florida on supplemented
+and un-supplemented substrates. International Journal of Agriculture and
+Applied Sciences 6, 4--11.
+
+\leavevmode\hypertarget{ref-kong2004}{}%
+Kong, W.-S., 2004. Descriptions of commercially important pleurotus
+species. Oyster mushroom cultivation. Part II. Oyster mushrooms. Seoul:
+Heineart Incorporation 54--61.
+
+\leavevmode\hypertarget{ref-mandeel2005cultivation}{}%
+Mandeel, Q., Al-Laith, A., Mohamed, S., 2005. Cultivation of oyster
+mushrooms (pleurotus spp.) on various lignocellulosic wastes. World
+Journal of Microbiology and Biotechnology 21, 601--607.
+
+\leavevmode\hypertarget{ref-nunez2002submerged}{}%
+Núñez, J.P., Mendoza, C.G., 2002. Submerged fermentation of
+lignocellulosic wastes under moderate temperature conditions for oyster
+mushroom growing substrates. Mushroom Biology and Mushroom Products 5,
+545--549.
+
+\leavevmode\hypertarget{ref-pointing2001}{}%
+Pointing, S., 2001. Feasibility of bioremediation by white-rot fungi.
+Applied microbiology and biotechnology 57, 20--33.
+
+\leavevmode\hypertarget{ref-ponmurugan2007effect}{}%
+Ponmurugan, P., Sekhar, Y.N., Sreesakthi, T., 2007. Effect of various
+substrates on the growth and quality of mushrooms. Pakistan Journal of
+Biological Sciences 10, 171--173.
+
+\leavevmode\hypertarget{ref-poppe1995}{}%
+Poppe, J., 1995. Cultivation of edible mushrooms on tropical
+agricultural wastes. University of Gent, Gent.
+
+\leavevmode\hypertarget{ref-quimio1990technical}{}%
+Quimio, T., Chang, S.-t., Royse, D.J., others, 1990. Technical
+guidelines for mushroom growing in the tropics.
+
+\leavevmode\hypertarget{ref-reddy2001bioconversion}{}%
+Reddy, G.V., 2001. Bioconversion of banana waste into protein by two
+pleurotus species p ostreatus and p sajor caju biotechnological approach
+(Thesis). Sardar Patel University, Department of Bio Science.
+
+\leavevmode\hypertarget{ref-sanchez2010cultivation}{}%
+Sańchez, C., 2010. Cultivation of pleurotus ostreatus and other edible
+mushrooms. Applied microbiology and biotechnology 85, 1321--1337.
+
+\leavevmode\hypertarget{ref-sarnklong2010utilization}{}%
+Sarnklong, C., Cone, J., Pellikaan, W., Hendriks, W., 2010. Utilization
+of rice straw and different treatments to improve its feed value for
+ruminants: A review. Asian-Australasian Journal of Animal Sciences 23,
+680--692.
+
+\leavevmode\hypertarget{ref-shah2004comparative}{}%
+Shah, Z., Ashraf, M., Ishtiaq, M., 2004. Comparative study on
+cultivation and yield performance of oyster mushroom (pleurotus
+ostreatus) on different substrates (wheat straw, leaves, saw dust).
+Pakistan Journal of Nutrition 3, 158--160.
+
+\leavevmode\hypertarget{ref-warcup1951studies}{}%
+Warcup, J., 1951. Studies on the growth of basidiomycetes in soil.
+Annals of Botany 15, 305--318.
+
+\leavevmode\hypertarget{ref-kyung2004shelfcultivation}{}%
+Wha Choi, K., 2004. Shelf cultivation of oyster mushroom with emphasis
+on substrate fermentation. Mushroom GrowersH'andbook 1: Oyster Mushroom
+Cultivation MushWorld.
+
+
+\end{document}
+
+
