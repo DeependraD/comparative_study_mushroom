@@ -27,7 +27,10 @@ output:
       - '--lua-filter=scholarly-metadata.lua'
       - '--lua-filter=author-info-blocks.lua'
     latex_engine: xelatex
+  bookdown::word_document2:
+    toc: yes
 bibliography: bibfile.bib
+always_allow_html: true
 linenumbers: true
 numbersections: true
 linestretch: 2
@@ -57,6 +60,32 @@ knitr::opts_chunk$set(tidy = FALSE, cache = FALSE,
                       fig.asp = 0.9, out.width = "0.6\\linewidth")
 options(knitr.kable.NA = "", digits = 3)
 ```
+
+```{r share-legend-grid}
+grid_arrange_share_legend <- function(..., nrow = 1, ncol = length(list(...)), position = c("bottom", "right")) {
+  plots <- list(...)
+  position <- match.arg(position)
+  g <- ggplot2::ggplotGrob(plots[[1]] + ggplot2::theme(legend.position = position))$grobs
+  legend <- g[[which(sapply(g, function(x) x$name) == "guide-box")]]
+  lheight <- sum(legend$height)
+  lwidth <- sum(legend$width)
+  gl <- lapply(plots, function(x) x + theme(legend.position = "none"))
+  gl <- c(gl, nrow = nrow, ncol = ncol)
+
+  combined <- switch(position,
+                     "bottom" = gridExtra::arrangeGrob(do.call(gridExtra::arrangeGrob, gl),
+                                            legend,
+                                            ncol = 1,
+                                            heights = grid::unit.c(unit(1, "npc") - lheight, lheight)),
+                     "right" = gridExtra::arrangeGrob(do.call(gridExtra::arrangeGrob, gl),
+                                           legend,
+                                           ncol = 2,
+                                           widths = grid::unit.c(unit(1, "npc") - lwidth, lwidth)))
+  grid::grid.newpage()
+  grid::grid.draw(combined)
+}
+```
+
 
 \linenumbers
 
@@ -332,8 +361,6 @@ ggarrange(fsr_day_lm_plot, flush_int_m4_plot, widths = c(3,3))
 A mushroom body with shorter stipe length and diametrically larger pileus are commercially regarded more desirable, at least for Oyster mushroom with regards to Asian consumers.
 
 ```{r physical-attributes, fig.width=6, fig.height=4, out.width="95%"}
-source("./../scripts/grid_arrange_share_legend.R")
-
 # relationship between flush and pileus diameter
 pleurotus_pd_gg <- pleurotus_df %>% 
   ggplot(aes(x = date, y = `pileus_diameter`, color = treatment_description)) +
